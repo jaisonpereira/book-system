@@ -6,6 +6,7 @@
 package com.systembook.booksystem.view;
 
 import com.systembook.booksystem.view.autores.ConsultarAutores;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +16,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class Menu extends javax.swing.JFrame {
 
-    ConsultarAutores consultarAutores = new ConsultarAutores();
+    @Autowired
+    ConsultarAutores consultarAutores;
 
     /**
      * Creates new form Menu

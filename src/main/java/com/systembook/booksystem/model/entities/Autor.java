@@ -5,11 +5,19 @@
  */
 package com.systembook.booksystem.model.entities;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author jpereira
  */
-public class Autor {
+@Entity
+public class Autor implements Serializable {
 
     public Autor(String nome, String nomeCompleto) {
         this.nome = nome;
@@ -19,8 +27,24 @@ public class Autor {
     public Autor() {
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column()
     private String nome;
+
+    @Column()
     private String nomeCompleto;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
