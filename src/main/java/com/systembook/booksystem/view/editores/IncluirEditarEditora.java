@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.systembook.booksystem.view.autores;
+package com.systembook.booksystem.view.editores;
 
-import com.systembook.booksystem.controllers.AutorController;
-import com.systembook.booksystem.model.entities.Autor;
+import com.systembook.booksystem.controllers.EditoraController;
+import com.systembook.booksystem.model.entities.Editora;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,23 +15,25 @@ import org.springframework.stereotype.Component;
  * @author jpereira
  */
 @Component
-public class IncluirEditarAutor extends javax.swing.JDialog {
+public class IncluirEditarEditora extends javax.swing.JDialog {
 
-    ConsultarAutores consulta;
-    private Autor entity;
+    private ConsultarEditoras consulta;
+    private Editora entity;
 
     @Autowired
-    private AutorController controller;
+    private EditoraController controller;
 
     /**
      * Creates new form IncluirEditarAutor
      */
-    public IncluirEditarAutor(java.awt.Frame parent, boolean modal) {
+    public IncluirEditarEditora(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
-    public IncluirEditarAutor() {
+    public IncluirEditarEditora() {
         initComponents();
         setLocationRelativeTo(null);
 
@@ -48,7 +50,7 @@ public class IncluirEditarAutor extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         txt_nome = new javax.swing.JTextField();
-        txt_nome_completo = new javax.swing.JTextField();
+        txt_url = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btn_save = new javax.swing.JButton();
@@ -56,9 +58,9 @@ public class IncluirEditarAutor extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Incluir / Editar Autor");
+        jLabel1.setText("Incluir / Editar Editora");
 
-        jLabel2.setText("Nome completo");
+        jLabel2.setText("URL");
 
         jLabel3.setText("Nome");
 
@@ -88,7 +90,7 @@ public class IncluirEditarAutor extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_nome_completo, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_url, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
@@ -110,7 +112,7 @@ public class IncluirEditarAutor extends javax.swing.JDialog {
                 .addGap(11, 11, 11)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_nome_completo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_url, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_save)
@@ -125,23 +127,23 @@ public class IncluirEditarAutor extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btn_cancelActionPerformed
 
-    public void setEntityToText(Autor entity) {
+    public void setEntityToText(Editora entity) {
         this.entity = entity;
         this.txt_nome.setText(this.entity.getNome());
-        this.txt_nome_completo.setText(this.entity.getNomeCompleto());
+        this.txt_url.setText(this.entity.getUrl());
     }
 
-    public Autor getTextToEntity() {
+    public Editora getTextToEntity() {
         if (this.entity == null) {
-            this.entity = new Autor();
+            this.entity = new Editora();
         }
 
         this.entity.setNome(txt_nome.getText());
-        this.entity.setNomeCompleto(txt_nome_completo.getText());
+        this.entity.setUrl(txt_url.getText());
         return this.entity;
     }
 
-    public void initialize(Autor entity, ConsultarAutores consulta) {
+    public void initialize(Editora entity, ConsultarEditoras consulta) {
         this.consulta = consulta;
         this.setEntityToText(entity);
         this.setVisible(true);
@@ -149,7 +151,7 @@ public class IncluirEditarAutor extends javax.swing.JDialog {
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
         this.controller.save(getTextToEntity());
-        this.setEntityToText(new Autor());
+        this.setEntityToText(new Editora());
         consulta.search();
     }//GEN-LAST:event_btn_saveActionPerformed
 
@@ -161,6 +163,6 @@ public class IncluirEditarAutor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField txt_nome;
-    private javax.swing.JTextField txt_nome_completo;
+    private javax.swing.JTextField txt_url;
     // End of variables declaration//GEN-END:variables
 }

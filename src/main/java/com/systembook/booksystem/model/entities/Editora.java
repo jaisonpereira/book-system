@@ -18,15 +18,14 @@ import javax.persistence.Id;
  * @author jpereira
  */
 @Entity
-public class Autor implements Serializable {
+public class Editora implements Serializable {
 
-    public Autor(String nome, String nomeCompleto) {
+    public Editora(String nome, String url) {
         this.nome = nome;
-        this.nomeCompleto = nomeCompleto;
+        this.url = url;
     }
 
-    public Autor() {
-
+    public Editora() {
     }
 
     @Id
@@ -38,7 +37,7 @@ public class Autor implements Serializable {
     private String nome;
 
     @Column()
-    private String nomeCompleto;
+    private String url;
 
     public Long getId() {
         return id;
@@ -56,20 +55,20 @@ public class Autor implements Serializable {
         this.nome = nome;
     }
 
-    public String getNomeCompleto() {
-        return nomeCompleto;
+    public String getUrl() {
+        return url;
     }
 
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 73 * hash + Objects.hashCode(this.id);
-        hash = 73 * hash + Objects.hashCode(this.nome);
-        hash = 73 * hash + Objects.hashCode(this.nomeCompleto);
+        int hash = 3;
+        hash = 71 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.nome);
+        hash = 71 * hash + Objects.hashCode(this.url);
         return hash;
     }
 
@@ -84,11 +83,11 @@ public class Autor implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Autor other = (Autor) obj;
+        final Editora other = (Editora) obj;
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (!Objects.equals(this.nomeCompleto, other.nomeCompleto)) {
+        if (!Objects.equals(this.url, other.url)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {

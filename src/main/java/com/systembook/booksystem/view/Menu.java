@@ -6,6 +6,8 @@
 package com.systembook.booksystem.view;
 
 import com.systembook.booksystem.view.autores.ConsultarAutores;
+import com.systembook.booksystem.view.editores.ConsultarEditoras;
+import com.systembook.booksystem.view.livros.ConsultarLivros;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,11 +21,19 @@ public class Menu extends javax.swing.JFrame {
     @Autowired
     ConsultarAutores consultarAutores;
 
+    @Autowired
+    ConsultarEditoras consultarEditoras;
+
+    @Autowired
+    ConsultarLivros consultarLivros;
+
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
+        setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     /**
@@ -110,16 +120,18 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        consultarLivros.initialize();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        consultarAutores.setVisible(true);
+        consultarAutores.initialize();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        consultarEditoras.initialize();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

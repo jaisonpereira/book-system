@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.systembook.booksystem.view.autores;
+package com.systembook.booksystem.view.editores;
 
-import com.systembook.booksystem.controllers.AutorController;
+import com.systembook.booksystem.controllers.EditoraController;
 import com.systembook.booksystem.model.entities.Autor;
+import com.systembook.booksystem.model.entities.Editora;
 import com.systembook.booksystem.view.components.ColunsLabs;
 import com.systembook.booksystem.view.components.SystemTable;
 import com.systembook.booksystem.view.components.SystemTableModel;
@@ -23,20 +24,19 @@ import org.springframework.stereotype.Component;
  * @author jpereira
  */
 @Component
-public class ConsultarAutores extends javax.swing.JFrame {
+public class ConsultarEditoras extends javax.swing.JFrame {
 
     @Autowired
-    private AutorController controller;
+    private EditoraController controller;
 
     @Autowired
-    private IncluirEditarAutor inclusao;
+    private IncluirEditarEditora inclusao;
 
     /**
      * Creates new form ConsultarAutores
      */
-    public ConsultarAutores() {
+    public ConsultarEditoras() {
         initComponents();
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -65,7 +65,7 @@ public class ConsultarAutores extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("Autores");
+        jLabel1.setText("Editores");
 
         tableEntities.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,9 +149,9 @@ public class ConsultarAutores extends javax.swing.JFrame {
         this.search();
         this.setVisible(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
 
     }
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        List<Autor> entities = new ArrayList();
 //        entities.add(new Autor("Hiago", "Hiago dos santos")); //       
@@ -161,16 +161,16 @@ public class ConsultarAutores extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        this.inclusao.initialize(new Autor(), this);
+        this.inclusao.initialize(new Editora(), this);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void editar() {
-        Autor entity = (Autor) this.tableEntities.getValueAt(tableEntities.getSelectedRow(), 0);
+        Editora entity = (Editora) this.tableEntities.getValueAt(tableEntities.getSelectedRow(), 0);
         this.inclusao.initialize(entity, this);
     }
 
     private void excluir() {
-        Autor entity = (Autor) this.tableEntities.getValueAt(tableEntities.getSelectedRow(), 0);
+        Editora entity = (Editora) this.tableEntities.getValueAt(tableEntities.getSelectedRow(), 0);
 
         final Object[] options = {"Sim", "Não",};
         final int choice = JOptionPane.showOptionDialog(null, "Deseja Realmente excluir Autor " + entity.getNome() + " ?", "Excluir",
@@ -183,12 +183,12 @@ public class ConsultarAutores extends javax.swing.JFrame {
     }
 
     public void search() {
-        List<Autor> entities = this.controller.listarByNome(txt_nome_pesquisa.getText());
+        List<Editora> entities = this.controller.listarByNome(txt_nome_pesquisa.getText());
 
         ArrayList dados = new ArrayList();
         if (entities != null) {
             entities.forEach((entity) -> {
-                dados.add(new Object[]{entity, entity.getNome(), entity.getNomeCompleto()});
+                dados.add(new Object[]{entity, entity.getNome(), entity.getUrl()});
             });
         }
 
@@ -201,7 +201,7 @@ public class ConsultarAutores extends javax.swing.JFrame {
             editar();
 
         });
-        new SystemTableModel(this.tableEntities, dados).makeColuns(new ColunsLabs(0, "model", true), new ColunsLabs(30, "Nome"), new ColunsLabs(70, "Nome Completo")).setMenuItensForRightClick(alterar, excluir);
+        new SystemTableModel(this.tableEntities, dados).makeColuns(new ColunsLabs(0, "model", true), new ColunsLabs(30, "Nome"), new ColunsLabs(70, "URL")).setMenuItensForRightClick(alterar, excluir);
     }
 
 

@@ -25,13 +25,13 @@ public class AutorService {
     }
 
     public List<Autor> listarByNome(String nome) {
-        if (nome != null || !nome.isEmpty()) {
+        if (nome != null && !nome.isEmpty()) {
             return this.repository.findByNomeContains(nome);
         }
         return (List<Autor>) this.repository.findAll();
     }
 
-    public void save(Autor entity) throws BusinessException {
+    public Autor save(Autor entity) throws BusinessException {
 
         if (entity.getNome() == null || entity.getNome().isEmpty()) {
             throw new BusinessException("Nome do autor é obrigatório");
@@ -41,7 +41,7 @@ public class AutorService {
             throw new BusinessException("Nome Completo do autor é obrigatório");
         }
 
-        this.repository.save(entity);
+        return this.repository.save(entity);
     }
 
     public void excluir(Autor entity) {
