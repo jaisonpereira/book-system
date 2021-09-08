@@ -34,11 +34,11 @@ public class Livro {
     @Column()
     private BigDecimal preco;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "autor_id", referencedColumnName = "id")
     private Autor autor;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "editora_id", referencedColumnName = "id")
     private Editora editora;
 
